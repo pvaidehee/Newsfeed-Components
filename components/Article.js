@@ -85,6 +85,13 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: 'Dark Chocolate',
+    date: '1900 BC',
+    firstParagraph: 'Chocolate is made from the tropical Theobroma cacao tree seeds. Dark chocolate has been around for over 3,000 years.It was developed around 1900 B.C in Central and South America as a drink. It was the only form of chocolate that was available at the time. Later, it was also made into a drink for the Aztecs and Mayans for ceremonial and medicinal purposes. Due to the bitterness of pure dark chocolate, it was modified over the years to become more than just dark chocolate. The Spanish discovered chocolate in the early 1500s and brought it back to Europe; they would add honey and cane sugar to make it sweeter and this paved the road to the creation of milk chocolate. In the late 1600s, milk was added to the dark chocolate beverage by a man named Hans Solan, who resided in Jamaica at the time. It is argued that milk chocolate was first invented by Daniel Peter and Henri Nestle who added condensed milk to dark chocolate in 1847. Soon after, chocolate was made into a solid form and started to be mass-produced in the 20th century. Mass production of milk chocolates led to it becoming vastly more popular than dark chocolate. However, dark chocolate has regained some popularity due to its supposed health benefits.',
+    secondParagraph: 'As of 2018, well-tested and generalizable clinical trials have not been conducted to evaluate the effects of compounds found in cocoa on physiological outcomes, such as blood pressure for which only small (1–2 mmHg) changes resulted from short-term consumption of chocolate up to 105 grams and 670 milligrams of flavonols per day. Flavanols found in dark chocolate that are linked to blood pressure and vascular activity include the monomers catechin and epicatechin, and (to a lesser extent) the polymeric procyanidins.',
+    thirdParagraph: 'The United States Department of Agriculture (USDA) states the nutrients of "Dark chocolate (70–85% cacao solids)" includes 1% water, 46% carbohydrates, 43% fat, and 8% protein (table). In a 100 grams (3.5 oz) reference amount, "Dark chocolate (70–85% cacao solids)" supplies several dietary minerals in significant content, such as iron at 92% of the Daily Value (DV) and vitamin B6 at 29% DV (table). Dark chocolate contains 70–100% cocoa solids (nutrition table).'
   }
 ];
 
@@ -111,3 +118,50 @@ const data = [
 
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 */
+
+function articleComponent(title, date, firstParagraph, secondParagraph, thirdParagraph) {
+  const article = document.createElement("div");
+  const titleHeader = document.createElement("h2");
+  const para1 = document.createElement("p");
+  const para2 = document.createElement("p");
+  const para3 = document.createElement("p");
+  const para4 = document.createElement("p");
+  const spanThing = document.createElement("span");
+
+  article.appendChild(titleHeader);
+  article.appendChild(para1);
+  article.appendChild(para2);
+  article.appendChild(para3);
+  article.appendChild(para4);
+  article.appendChild(spanThing);
+
+
+  article.classList.add("article");
+  para1.classList.add("date");
+  spanThing.classList.add("expandButton");
+
+
+  titleHeader.textContent = title;
+  para1.textContent = date;
+  para2.textContent = firstParagraph;
+  para3.textContent = secondParagraph;
+  para4.textContent = thirdParagraph;
+  spanThing.textContent = '\u25bc';
+
+
+  spanThing.addEventListener("click", () => {
+    article.classList.toggle("article-open")
+  })
+
+  return article;
+}
+
+const articles = document.querySelector(".articles");
+
+data.forEach((dataObject) => {
+  const dataComponent = articleComponent(dataObject.title, dataObject.date, dataObject.firstParagraph, dataObject.secondParagraph, dataObject.thirdParagraph);
+  articles.appendChild(dataComponent);
+
+});
+
+
