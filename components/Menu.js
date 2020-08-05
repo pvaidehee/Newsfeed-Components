@@ -35,14 +35,14 @@ let menuItems = [
 
 const menuMaker = (object) => {
   const menu = document.createElement("div");
-  const uList = document.createElement("ul");
+  const unOrderedList = document.createElement("ul");
 
   menu.classList.add("menu");
 
   object.forEach((element) => {
-    let li = document.createElement("li");
-    li.textContent = element;
-    uList.appendChild(li);
+    let list = document.createElement("li");
+    list.textContent = element;
+    unOrderedList.appendChild(list);
   });
 
   const menuButton = document.querySelector(".menu-button");
@@ -50,7 +50,7 @@ const menuMaker = (object) => {
     menu.classList.toggle("menu--open");
   });
 
-  menu.appendChild(uList);
+  menu.appendChild(unOrderedList);
 
   return menu;
 };
